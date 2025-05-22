@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .medievalsharp-regular {
+  font-family: "MedievalSharp", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+        .card{
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+  .escudo-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .escudo {
+    width: 100px;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    border-radius: 10px; 
+    padding: 5px;
+  }
+
+  .escudo:hover {
+    box-shadow: 0 0 20px gold;
+  border-color: gold;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+  .escudo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+</head>
+<body class=" medievalsharp-regular" style="width: auto; height: 100vh; display: flex; justify-content: center; align-items: center; background-image: url('../assets/1233742.png'); background-size: cover;">
+    <div class="container d-flex justify-content-center">
+        <div class="row">
+            <div class="col-10">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="escudo-container">
+                            <div class="escudo">
+                              <img src="../assets/Screenshot_2-removebg-preview.png" alt="Escudo">
+                            </div>
+                          </div>
+                        
+                        <form>
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label">Email address</label>
+                              <input type="email" class="form-control" id="Email" aria-describedby="emailHelp">
+                              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputPassword1" class="form-label">Password</label>
+                              <input type="password" class="form-control" id="Password">
+                            </div>
+                            <div class="mb-3 form-check">
+                              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>
+                            <div class="d-grid gap-2"> <button type="submit" class="btn btn-dark" onclick="validarLogin()">Submit</button>
+                            </div>
+                           
+                          </form>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Esqueceu sua senha? <a href="#">Clique aqui</a></small>
+                    <ul class="social text-center mt-3 list-unstyled list-inline d-flex justify-content-center">
+                     <li><a href="#"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" class="fa fa-facebook"></img></a></li>
+                     <li><a href="#"><img src="https://img.icons8.com/color/48/000000/instagram-new.png" class="fa fa-instagram"></img></a></li>
+                     <li><a href="#"><img src="https://img.icons8.com/color/48/000000/twitter.png" class="fa fa-twitter"></img></a></li>
+                     <li><a href="#"><img src="https://img.icons8.com/color/48/000000/google-logo.png" class="fa fa-google"></img></a></li>
+                     <li><a href="#"><img src="https://img.icons8.com/color/48/000000/linkedin.png" class="fa fa-linkedin"></img></a></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <script src="../Script/login.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</body>
+</html>

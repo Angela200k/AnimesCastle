@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animes Castle</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/Screenshot_2-removebg-preview.png" type="image/x-icon">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        #nav {
+            background-color: rgba(6, 90, 3, 0.8);
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            background-color: #fff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img-container {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .card-text {
+            flex-grow: 1;
+        }
+        
+        .btn-primary {
+            background-color: #065a03;
+            border-color: #054a02;
+        }
+        
+        .btn-primary:hover {
+            background-color: #054a02;
+            border-color: #043901;
+        }
+        
+        footer {
+            background-color: #1a1a1a !important;
+        }
+        
+        .social-icons a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #0d6efd !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" id="nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-castle me-2"></i>Animes Castle
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-door me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-collection me-1"></i> Produtos</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-grid me-1"></i> Categorias
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action Figures</a></li>
+                            <li><a class="dropdown-item" href="#">Pôsteres</a></li>
+                            <li><a class="dropdown-item" href="#">Roupas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Todos os produtos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-info-circle me-1"></i> Sobre</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar produtos..." aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
+                </form>
+                <div class="ms-3">
+                    <a href="#" class="btn btn-outline-light position-relative">
+                        <i class="bi bi-cart3"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                            <span class="visually-hidden">itens no carrinho</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="ms-1">
+                    <a href="#" class="btn btn-outline-light" style="border: none">
+                        <i class="bi bi-person-circle" width="30" height="30"></i>
+                    </a>    
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="fw-bold">Colecionáveis Exclusivos</h2>
+                    <p class="text-muted">Os melhores action figures do mercado</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Product 1 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="product-card h-100 p-3">
+                        <div class="product-img-container">
+                            <img src="https://a-static.mlcdn.com.br/1500x1500/boneco-katsuki-bakugo-articulado-com-acessorios-action-figure-kazinho-colecionavel-anime-my-hero-academia/actionstore/15880962061/987c99d35afb88dac22bcc5ea330b6a2.jpeg" class="product-img" alt="Katsuki Bakugo">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Katsuki Bakugo</h5>
+                            <p class="card-text">Boneco de colecionador 10 cm de altura e 5 cm de largura.</p>
+                            <div class="mt-auto">
+                                <p class="price fw-bold text-success">R$ 143,11</p>
+                                <a href="#" class="btn btn-primary w-100 mt-2">
+                                    <i class="bi bi-cart-plus me-1"></i> Comprar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="product-card h-100 p-3">
+                        <div class="product-img-container">
+                            <img src="https://a-static.mlcdn.com.br/1500x1500/boneco-katsuki-bakugo-articulado-com-acessorios-action-figure-kazinho-colecionavel-anime-my-hero-academia/actionstore/15880962061/987c99d35afb88dac22bcc5ea330b6a2.jpeg" class="product-img" alt="Katsuki Bakugo">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Katsuki Bakugo</h5>
+                            <p class="card-text">Boneco de colecionador 10 cm de altura e 5 cm de largura.</p>
+                            <div class="mt-auto">
+                                <p class="price fw-bold text-success">R$ 143,11</p>
+                                <a href="#" class="btn btn-primary w-100 mt-2">
+                                    <i class="bi bi-cart-plus me-1"></i> Comprar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="product-card h-100 p-3">
+                        <div class="product-img-container">
+                            <img src="data:image/jpeg;base64,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" class="product-img" alt="Naruto Figure">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Naruto Uzumaki</h5>
+                            <p class="card-text">Action figure articulada 15 cm de altura, edição especial.</p>
+                            <div class="mt-auto">
+                                <p class="price fw-bold text-success">R$ 189,90</p>
+                                <a href="#" class="btn btn-primary w-100 mt-2">
+                                    <i class="bi bi-cart-plus me-1"></i> Comprar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="product-card h-100 p-3">
+                        <div class="product-img-container">
+                            <img src="https://http2.mlstatic.com/D_NQ_NP_703767-MLB46775443106_072021-O-action-figure-goku-super-saiyajin-blue-vs-freeza-dourado-dbs.webp" class="product-img" alt="Goku Figure">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Son Goku</h5>
+                            <p class="card-text">Figura Super Saiyan Blue, 20 cm com base especial.</p>
+                            <div class="mt-auto">
+                                <p class="price fw-bold text-success">R$ 219,99</p>
+                                <a href="#" class="btn btn-primary w-100 mt-2">
+                                    <i class="bi bi-cart-plus me-1"></i> Comprar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="product-card h-100 p-3">
+                        <div class="product-img-container">
+                            <img src="https://images.tcdn.com.br/img/img_prod/460977/estatua_monkey_d_luffy_gear_5_five_deus_do_sol_nika_one_piece_28_cm_black_friday_mkp_105157_1_387bc06eee98baef7bfb56ad0b71ccb4.jpg" class="product-img" alt="Luffy Figure">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Monkey D. Luffy</h5>
+                            <p class="card-text">Figura Gear Fourth, 18 cm com efeitos especiais.</p>
+                            <div class="mt-auto">
+                                <p class="price fw-bold text-success">R$ 199,50</p>
+                                <a href="#" class="btn btn-primary w-100 mt-2">
+                                    <i class="bi bi-cart-plus me-1"></i> Comprar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="product-card h-100 p-3">
+                        <div class="product-img-container">
+                            <img src="https://acdn-us.mitiendanube.com/stores/002/321/455/products/artfx-j-levi-renewal-package-ver_1-3a9f4cab5c51338ff916910010601393-1024-1024.jpeg" class="product-img" alt="Levi Figure">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Levi Ackerman</h5>
+                            <p class="card-text">Figura de ataque dos titãs, 16 cm com acessórios.</p>
+                            <div class="mt-auto">
+                                <p class="price fw-bold text-success">R$ 179,90</p>
+                                <a href="#" class="btn btn-primary w-100 mt-2">
+                                    <i class="bi bi-cart-plus me-1"></i> Comprar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="product-card h-100 p-3">
+                        <div class="product-img-container">
+                            <img src="https://shoppingnest.in/cdn/shop/files/P1867760.jpg?v=1727006674" class="product-img" alt="Tanjiro Figure">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Tanjiro Kamado</h5>
+                            <p class="card-text">Figura Demon Slayer, 17 cm com espada detalhada.</p>
+                            <div class="mt-auto">
+                                <p class="price fw-bold text-success">R$ 209,00</p>
+                                <a href="#" class="btn btn-primary w-100 mt-2">
+                                    <i class="bi bi-cart-plus me-1"></i> Comprar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="product-card h-100 p-3">
+                        <div class="product-img-container">
+                            <img src="https://m.media-amazon.com/images/I/71R7RFaMVyL.jpg" class="product-img" alt="Sasuke Figure">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Sasuke Uchiha</h5>
+                            <p class="card-text">Figura Sharingan, 16 cm com chakra effects.</p>
+                            <div class="mt-auto">
+                                <p class="price fw-bold text-success">R$ 195,75</p>
+                                <a href="#" class="btn btn-primary w-100 mt-2">
+                                    <i class="bi bi-cart-plus me-1"></i> Comprar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <i class="bi bi-chevron-left"></i> Anterior
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Próxima <i class="bi bi-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5><i class="bi bi-castle me-2"></i> Animes Castle</h5>
+                    <p class="mt-3">A maior loja de colecionáveis de anime do Brasil, com os melhores produtos importados diretamente do Japão.</p>
+                    <div class="mt-4">
+                        <img src="https://via.placeholder.com/120x40?text=Payment+Methods" alt="Payment Methods" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Links úteis</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Política de privacidade</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Termos de serviço</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Trocas e devoluções</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">FAQ</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Categorias</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Action Figures</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Pôsteres</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Roupas</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Acessórios</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Promoções</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contato</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-3">
+                            <i class="bi bi-envelope me-2"></i> 
+                            <a href="mailto:contato@animescastle.com.br" class="text-white-50 text-decoration-none">contato@animescastle.com.br</a>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-telephone me-2"></i> 
+                            <a href="tel:+551140028922" class="text-white-50 text-decoration-none">(11) 4002-8922</a>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-geo-alt me-2"></i> 
+                            <span class="text-white-50">Av. Paulista, 1000 - São Paulo/SP</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-clock me-2"></i> 
+                            <span class="text-white-50">Seg-Sex: 9h-18h | Sáb: 9h-13h</span>
+                        </li>
+                    </ul>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0 text-white-50">&copy; 2023 Animes Castle. Todos os direitos reservados. CNPJ: 12.345.678/0001-99</p>
+            </div>
+        </div>
+    </footer>
+        
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    ( <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot de Atendimento</title>
+    <style>
+        /* Estilos gerais do chatbot */
+        #chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        /* Cabeçalho do chatbot */
+        #chat-header {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #chat-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        #chat-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        /* Corpo do chat */
+        #chat-body {
+            height: 400px;
+            background: #f9f9f9;
+            display: none;
+            flex-direction: column;
+        }
+        
+        /* Área de mensagens */
+        #chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Estilos das mensagens */
+        .message {
+            margin-bottom: 12px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            background: #ffffff;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .user-message {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        /* Área de entrada */
+        #chat-input-area {
+            display: flex;
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+        
+        #user-input {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        #send-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        #send-button:hover {
+            background: #2980b9;
+        }
+        
+        /* Botão flutuante quando minimizado */
+        #chatbot-minimized {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        /* Indicador de nova mensagem */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        /* Opções rápidas */
+        .quick-options {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .quick-option {
+            background: #e0e0e0;
+            border: none;
+            border-radius: 15px;
+            padding: 5px 10px;
+            margin: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .quick-option:hover {
+            background: #d0d0d0;
+        }
+        
+        /* Rodapé do chatbot */
+        .chat-footer {
+            font-size: 10px;
+            text-align: center;
+            padding: 5px;
+            color: #777;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container principal do chatbot -->
+    <div id="chatbot-container">
+        <div id="chat-header" onclick="toggleChat()">
+            <h3>Atendimento Virtual</h3>
+            <button id="chat-toggle">−</button>
+        </div>
+        <div id="chat-body">
+            <div id="chat-messages">
+                <!-- Mensagens serão adicionadas aqui dinamicamente -->
+                <div class="message bot-message">
+                    Olá! Sou o assistente virtual. Como posso ajudar você hoje?
+                    <div class="quick-options">
+                        <button class="quick-option" onclick="sendQuickMessage('Quais são seus horários de atendimento?')">Horários</button>
+                        <button class="quick-option" onclick="sendQuickMessage('Como faço um pedido?')">Fazer pedido</button>
+                        <button class="quick-option" onclick="sendQuickMessage('Preciso falar com um atendente')">Atendente humano</button>
+                    </div>
+                </div>
+            </div>
+            <div id="chat-input-area">
+                <input type="text" id="user-input" placeholder="Digite sua mensagem..." onkeypress="handleKeyPress(event)">
+                <button id="send-button" onclick="sendMessage()">➤</button>
+            </div>
+            <div class="chat-footer">
+                Atendimento automático 24h
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão flutuante quando minimizado -->
+    <div id="chatbot-minimized" style="display: none;" onclick="toggleChat()">
+        <span>💬</span>
+        <div class="notification-badge" id="notification-badge" style="display: none;">1</div>
+    </div>
+
+    <script>
+        // Variáveis de estado
+        let chatOpen = false;
+        let newMessages = 0;
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar o chatbot após um pequeno delay
+            setTimeout(() => {
+                document.getElementById('chatbot-container').style.transform = 'translateY(0)';
+                document.getElementById('chatbot-container').style.opacity = '1';
+            }, 500);
+        });
+        
+        // Alternar entre aberto/fechado
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            
+            if (chatOpen) {
+                document.getElementById('chat-body').style.display = 'flex';
+                document.getElementById('chatbot-container').style.display = 'block';
+                document.getElementById('chatbot-minimized').style.display = 'none';
+                document.getElementById('chat-toggle').textContent = '−';
+                newMessages = 0;
+                document.getElementById('notification-badge').style.display = 'none';
+            } else {
+                document.getElementById('chat-body').style.display = 'none';
+                document.getElementById('chatbot-container').style.display = 'none';
+                document.getElementById('chatbot-minimized').style.display = 'flex';
+                document.getElementById('chat-toggle').textContent = '+';
+            }
+        }
+        
+        // Enviar mensagem
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const message = input.value.trim();
+            
+            if (message !== '') {
+                // Adicionar mensagem do usuário
+                addMessage(message, 'user');
+                input.value = '';
+                
+                // Simular resposta do bot após um pequeno delay
+                setTimeout(() => {
+                    const botResponse = generateBotResponse(message);
+                    addMessage(botResponse.text, 'bot', botResponse.options);
+                    
+                    // Se o chat estiver fechado, mostrar notificação
+                    if (!chatOpen) {
+                        newMessages++;
+                        document.getElementById('notification-badge').textContent = newMessages;
+                        document.getElementById('notification-badge').style.display = 'flex';
+                    }
+                }, 800);
+            }
+        }
+        
+        // Enviar mensagem rápida
+        function sendQuickMessage(message) {
+            document.getElementById('user-input').value = message;
+            sendMessage();
+        }
+        
+        // Lidar com pressionar Enter
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        // Adicionar mensagem ao chat
+        function addMessage(text, sender, quickOptions = null) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender + '-message');
+            messageElement.textContent = text;
+            
+            if (quickOptions) {
+                const optionsContainer = document.createElement('div');
+                optionsContainer.classList.add('quick-options');
+                
+                quickOptions.forEach(option => {
+                    const button = document.createElement('button');
+                    button.classList.add('quick-option');
+                    button.textContent = option.text;
+                    button.onclick = () => sendQuickMessage(option.text);
+                    optionsContainer.appendChild(button);
+                });
+                
+                messageElement.appendChild(optionsContainer);
+            }
+            
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        // Gerar resposta do bot (simulação simples)
+        function generateBotResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            let response = {};
+            
+            if (lowerMessage.includes('horário') || lowerMessage.includes('horarios')) {
+                response.text = "Nosso atendimento funciona de segunda a sexta, das 8h às 18h. Aos sábados das 9h às 13h.";
+                response.options = [
+                    { text: "E no domingo?" },
+                    { text: "Posso agendar um horário?" }
+                ];
+            } 
+            else if (lowerMessage.includes('pedido') || lowerMessage.includes('comprar')) {
+                response.text = "Você pode fazer pedidos diretamente pelo nosso site. Acesse a página do produto e clique em 'Comprar'.";
+                response.options = [
+                    { text: "Como acompanho meu pedido?" },
+                    { text: "Quais são as formas de pagamento?" }
+                ];
+            }
+            else if (lowerMessage.includes('atendente') || lowerMessage.includes('humano')) {
+                response.text = "Vou conectar você com um atendente humano. Por favor, aguarde um momento...";
+                response.options = [];
+                
+                // Simular transferência após 3 segundos
+                setTimeout(() => {
+                    addMessage("Todos os nossos atendentes estão ocupados no momento. Por favor, tente novamente mais tarde ou deixe seu número que retornamos.", 'bot', [
+                        { text: "Deixar meu telefone" },
+                        { text: "Voltar ao menu principal" }
+                    ]);
+                }, 3000);
+            }
+            else if (lowerMessage.includes('telefone') || lowerMessage.includes('contato')) {
+                response.text = "Nosso telefone para contato é (11) 1234-5678. Você também pode nos enviar um email para contato@empresa.com";
+            }
+            else {
+                response.text = "Desculpe, não entendi completamente. Poderia reformular sua pergunta ou escolher uma das opções abaixo?";
+                response.options = [
+                    { text: "Preciso de ajuda com meu pedido" },
+                    { text: "Quero saber sobre garantia" },
+                    { text: "Falar com atendente humano" }
+                ];
+            }
+            
+            return response;
+        }
+        
+        // Mostrar o chatbot após 10 segundos se o usuário não interagir
+        setTimeout(() => {
+            if (!chatOpen && newMessages === 0) {
+                document.getElementById('notification-badge').textContent = '1';
+                document.getElementById('notification-badge').style.display = 'flex';
+                newMessages = 1;
+            }
+        }, 10000);
+    </script>)
+</body>
+</html>

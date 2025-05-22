@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot de Atendimento</title>
+    <style>
+        /* Estilos gerais do chatbot */
+        #chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        /* Cabeçalho do chatbot */
+        #chat-header {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #chat-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        #chat-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        /* Corpo do chat */
+        #chat-body {
+            height: 400px;
+            background: #f9f9f9;
+            display: none;
+            flex-direction: column;
+        }
+        
+        /* Área de mensagens */
+        #chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Estilos das mensagens */
+        .message {
+            margin-bottom: 12px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            background: #ffffff;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .user-message {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        /* Área de entrada */
+        #chat-input-area {
+            display: flex;
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+        
+        #user-input {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        #send-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        #send-button:hover {
+            background: #2980b9;
+        }
+        
+        /* Botão flutuante quando minimizado */
+        #chatbot-minimized {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        /* Indicador de nova mensagem */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        /* Opções rápidas */
+        .quick-options {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .quick-option {
+            background: #e0e0e0;
+            border: none;
+            border-radius: 15px;
+            padding: 5px 10px;
+            margin: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .quick-option:hover {
+            background: #d0d0d0;
+        }
+        
+        /* Rodapé do chatbot */
+        .chat-footer {
+            font-size: 10px;
+            text-align: center;
+            padding: 5px;
+            color: #777;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container principal do chatbot -->
+    <div id="chatbot-container">
+        <div id="chat-header" onclick="toggleChat()">
+            <h3>Atendimento Virtual</h3>
+            <button id="chat-toggle">−</button>
+        </div>
+        <div id="chat-body">
+            <div id="chat-messages">
+                <!-- Mensagens serão adicionadas aqui dinamicamente -->
+                <div class="message bot-message">
+                    Olá! Sou o assistente virtual. Como posso ajudar você hoje?
+                    <div class="quick-options">
+                        <button class="quick-option" onclick="sendQuickMessage('Quais são seus horários de atendimento?')">Horários</button>
+                        <button class="quick-option" onclick="sendQuickMessage('Como faço um pedido?')">Fazer pedido</button>
+                        <button class="quick-option" onclick="sendQuickMessage('Preciso falar com um atendente')">Atendente humano</button>
+                    </div>
+                </div>
+            </div>
+            <div id="chat-input-area">
+                <input type="text" id="user-input" placeholder="Digite sua mensagem..." onkeypress="handleKeyPress(event)">
+                <button id="send-button" onclick="sendMessage()">➤</button>
+            </div>
+            <div class="chat-footer">
+                Atendimento automático 24h
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão flutuante quando minimizado -->
+    <div id="chatbot-minimized" style="display: none;" onclick="toggleChat()">
+        <span>💬</span>
+        <div class="notification-badge" id="notification-badge" style="display: none;">1</div>
+    </div>
+
+    <script>
+        // Variáveis de estado
+        let chatOpen = false;
+        let newMessages = 0;
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar o chatbot após um pequeno delay
+            setTimeout(() => {
+                document.getElementById('chatbot-container').style.transform = 'translateY(0)';
+                document.getElementById('chatbot-container').style.opacity = '1';
+            }, 500);
+        });
+        
+        // Alternar entre aberto/fechado
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            
+            if (chatOpen) {
+                document.getElementById('chat-body').style.display = 'flex';
+                document.getElementById('chatbot-container').style.display = 'block';
+                document.getElementById('chatbot-minimized').style.display = 'none';
+                document.getElementById('chat-toggle').textContent = '−';
+                newMessages = 0;
+                document.getElementById('notification-badge').style.display = 'none';
+            } else {
+                document.getElementById('chat-body').style.display = 'none';
+                document.getElementById('chatbot-container').style.display = 'none';
+                document.getElementById('chatbot-minimized').style.display = 'flex';
+                document.getElementById('chat-toggle').textContent = '+';
+            }
+        }
+        
+        // Enviar mensagem
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const message = input.value.trim();
+            
+            if (message !== '') {
+                // Adicionar mensagem do usuário
+                addMessage(message, 'user');
+                input.value = '';
+                
+                // Simular resposta do bot após um pequeno delay
+                setTimeout(() => {
+                    const botResponse = generateBotResponse(message);
+                    addMessage(botResponse.text, 'bot', botResponse.options);
+                    
+                    // Se o chat estiver fechado, mostrar notificação
+                    if (!chatOpen) {
+                        newMessages++;
+                        document.getElementById('notification-badge').textContent = newMessages;
+                        document.getElementById('notification-badge').style.display = 'flex';
+                    }
+                }, 800);
+            }
+        }
+        
+        // Enviar mensagem rápida
+        function sendQuickMessage(message) {
+            document.getElementById('user-input').value = message;
+            sendMessage();
+        }
+        
+        // Lidar com pressionar Enter
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        // Adicionar mensagem ao chat
+        function addMessage(text, sender, quickOptions = null) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender + '-message');
+            messageElement.textContent = text;
+            
+            if (quickOptions) {
+                const optionsContainer = document.createElement('div');
+                optionsContainer.classList.add('quick-options');
+                
+                quickOptions.forEach(option => {
+                    const button = document.createElement('button');
+                    button.classList.add('quick-option');
+                    button.textContent = option.text;
+                    button.onclick = () => sendQuickMessage(option.text);
+                    optionsContainer.appendChild(button);
+                });
+                
+                messageElement.appendChild(optionsContainer);
+            }
+            
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        // Gerar resposta do bot (simulação simples)
+        function generateBotResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            let response = {};
+            
+            if (lowerMessage.includes('horário') || lowerMessage.includes('horarios')) {
+                response.text = "Nosso atendimento funciona de segunda a sexta, das 8h às 18h. Aos sábados das 9h às 13h.";
+                response.options = [
+                    { text: "E no domingo?" },
+                    { text: "Posso agendar um horário?" }
+                ];
+            } 
+            else if (lowerMessage.includes('pedido') || lowerMessage.includes('comprar')) {
+                response.text = "Você pode fazer pedidos diretamente pelo nosso site. Acesse a página do produto e clique em 'Comprar'.";
+                response.options = [
+                    { text: "Como acompanho meu pedido?" },
+                    { text: "Quais são as formas de pagamento?" }
+                ];
+            }
+            else if (lowerMessage.includes('atendente') || lowerMessage.includes('humano')) {
+                response.text = "Vou conectar você com um atendente humano. Por favor, aguarde um momento...";
+                response.options = [];
+                
+                // Simular transferência após 3 segundos
+                setTimeout(() => {
+                    addMessage("Todos os nossos atendentes estão ocupados no momento. Por favor, tente novamente mais tarde ou deixe seu número que retornamos.", 'bot', [
+                        { text: "Deixar meu telefone" },
+                        { text: "Voltar ao menu principal" }
+                    ]);
+                }, 3000);
+            }
+            else if (lowerMessage.includes('telefone') || lowerMessage.includes('contato')) {
+                response.text = "Nosso telefone para contato é (11) 1234-5678. Você também pode nos enviar um email para contato@empresa.com";
+            }
+            else {
+                response.text = "Desculpe, não entendi completamente. Poderia reformular sua pergunta ou escolher uma das opções abaixo?";
+                response.options = [
+                    { text: "Preciso de ajuda com meu pedido" },
+                    { text: "Quero saber sobre garantia" },
+                    { text: "Falar com atendente humano" }
+                ];
+            }
+            
+            return response;
+        }
+        
+        // Mostrar o chatbot após 10 segundos se o usuário não interagir
+        setTimeout(() => {
+            if (!chatOpen && newMessages === 0) {
+                document.getElementById('notification-badge').textContent = '1';
+                document.getElementById('notification-badge').style.display = 'flex';
+                newMessages = 1;
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
